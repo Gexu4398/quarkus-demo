@@ -2,8 +2,8 @@ package com.gexu.demo.rest;
 
 import com.gexu.demo.models.Student;
 import com.gexu.demo.models.result.PageResult;
+import com.gexu.demo.util.SortUtl;
 import io.quarkus.panache.common.Page;
-import io.quarkus.panache.common.Sort;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DefaultValue;
@@ -24,12 +24,11 @@ public class StudentResource {
   public PageResult<Student> getStudents(
       @QueryParam("page") @DefaultValue("0") int pageIndex,
       @QueryParam("size") @DefaultValue("10") int pageSize,
-      @QueryParam("sort") @DefaultValue("name") String sortField,
+      @QueryParam("sort") @DefaultValue("createdAt") String sortField,
       @QueryParam("order") @DefaultValue("asc") String sortOrder) {
 
     final var page = Page.of(pageIndex, pageSize);
-    final var sort = Sort.by(sortField).direction(Sort.Direction.valueOf((sortOrder)));
-
+    final var sort = SortUtl.validateSortField(sortField, sortOrder);
     final var query = Student.findAll(sort).page(page);
 
     return new PageResult<>(query.list(), pageIndex, pageSize, query.pageCount(), query.count(),

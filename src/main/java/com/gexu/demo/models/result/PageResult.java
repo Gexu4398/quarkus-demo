@@ -14,7 +14,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 public class PageResult<T> {
 
   @Schema(description = "当前页的数据")
-  private List<T> data = new ArrayList<>();
+  private List<T> content = new ArrayList<>();
 
   @Schema(description = "当前页码")
   private int pageIndex = 0;
