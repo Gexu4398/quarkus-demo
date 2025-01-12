@@ -1,0 +1,12 @@
+quarkus:
+  datasource:
+    db-kind: h2
+    jdbc:
+      url: jdbc:h2:mem:test
+      driver: org.h2.Driver
+    username: sa
+    password:
+  hibernate-orm:
+    database:
+      database:
+        generation: none

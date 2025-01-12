@@ -1,0 +1,20 @@
+quarkus:
+  testcontainers:
+    enabled: false
+  http:
+    port: 8081
+    root-path: /api/v1
+  datasource:
+    db-kind: postgresql
+    jdbc:
+      url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:5432/test
+    username: root
+    password: example
+  swagger-ui:
+    always-include: true
+    path: swagger-ui
+  smallrye-openapi:
+    path: openapi
+  liquibase:
+    migrate-at-start: true
+    change-log: db/changeLog.xml
