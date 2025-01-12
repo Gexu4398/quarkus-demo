@@ -2,7 +2,7 @@ package com.gexu.quarkusdemo.bizservice.rest;
 
 import com.gexu.quarkusdemo.bizmodel.models.Student;
 import com.gexu.quarkusdemo.bizservice.models.result.PageResult;
-import com.gexu.quarkusdemo.bizservice.models.util.SortUtl;
+import com.gexu.quarkusdemo.bizservice.util.SortUtl;
 import io.quarkus.panache.common.Page;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;

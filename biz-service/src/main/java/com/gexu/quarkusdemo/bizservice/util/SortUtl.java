@@ -1,4 +1,4 @@
-package com.gexu.quarkusdemo.bizservice.models.util;
+package com.gexu.quarkusdemo.bizservice.util;
 
 import io.quarkus.panache.common.Sort;
 import io.quarkus.panache.common.Sort.Direction;
