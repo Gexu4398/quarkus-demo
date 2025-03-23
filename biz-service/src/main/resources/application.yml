@@ -5,11 +5,19 @@ quarkus:
     port: 8081
     root-path: /api/v1
   datasource:
+    # 默认数据库配置
     db-kind: postgresql
     jdbc:
-      url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:5432/test
+      url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:5432/tp
     username: root
-    password: example
+    password: ${POSTGRESQL_ROOT_PASSWORD:example}
+    # keycloak数据库配置
+    keycloak:
+      db-kind: postgresql
+      username: root
+      password: ${POSTGRESQL_ROOT_PASSWORD:example}
+      jdbc:
+        url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:5432/keycloak
   swagger-ui:
     always-include: true
     path: swagger-ui

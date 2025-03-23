@@ -1,7 +1,6 @@
 package com.gexu.quarkusdemo.bizmodel.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +27,7 @@ import org.hibernate.annotations.UuidGenerator;
 @ToString
 @Builder
 @Entity
-public class Student extends PanacheEntityBase {
+public class Vertex {
 
   @Id
   @Generated(value = "uuid")
@@ -38,6 +37,9 @@ public class Student extends PanacheEntityBase {
 
   @Column(nullable = false)
   private String name;
+
+  @Column(nullable = false)
+  private String type;
 
   @Column
   @Temporal(TemporalType.TIMESTAMP)
@@ -58,8 +60,8 @@ public class Student extends PanacheEntityBase {
     if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
       return false;
     }
-    Student student = (Student) o;
-    return ID != null && Objects.equals(ID, student.ID);
+    Vertex v = (Vertex) o;
+    return ID != null && Objects.equals(ID, v.ID);
   }
 
   @Override
