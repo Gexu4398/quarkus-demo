@@ -11,3 +11,28 @@ services:
       - "5432:5432"
     volumes:
       - ./init-postgres:/docker-entrypoint-initdb.d
+
+  keycloak:
+    image: keycloak/keycloak:26.1.4
+    environment:
+      - BASE_URL=http://localhost/
+      - APP_NAME=graph
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+      - KC_DB=postgres
+      - KC_DB_URL=jdbc:postgresql://postgres:5432/keycloak
+      - KC_DB_USERNAME=root
+      - KC_DB_PASSWORD=example
+      - KC_HTTP_ENABLED=true
+      - KC_HOSTNAME=localhost
+      - KC_HTTP_RELATIVE_PATH=/auth
+      - KC_PROXY_HEADERS=xforwarded
+    command: start --http-enabled=true --import-realm --spi-theme-static-max-age=-1 --spi-theme-cache-themes=false --spi-theme-cache-templates=false
+    volumes:
+      - ./init-keycloak/realm.json:/opt/keycloak/data/import/realm.json
+      - ./init-keycloak/tp-theme:/opt/keycloak/themes/tp-theme
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
